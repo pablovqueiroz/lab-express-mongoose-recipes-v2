@@ -30,8 +30,30 @@ app.get("/", (req, res) => {
 
 //  Iteration 3 - Create a Recipe route
 //  POST  /recipes route
+// app.post("/recipes", (req, res) => {
+//   Recipe.create(req.body)
+//     .then((newRecipe) => {
+//       console.log("recipe added: ", newRecipe);
+//       res.status(201).json(newRecipe);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json({ errorMessage: err });
+//     });
+// });
+
+//irorhack solution
 app.post("/recipes", (req, res) => {
-  Recipe.create(req.body)
+    Recipe.create({
+        title: req.body.title,
+        instructions: req.body.instructions,
+        level: req.body.level,
+        ingredients: req.body.ingredients,
+        image: req.body.image,
+        duration: req.body.duration,
+        isArchived: req.body.isArchived,
+        created: req.body.created,
+    })
     .then((newRecipe) => {
       console.log("recipe added: ", newRecipe);
       res.status(201).json(newRecipe);
